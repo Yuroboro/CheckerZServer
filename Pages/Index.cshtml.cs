@@ -1,3 +1,4 @@
+using Humanizer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,9 +13,6 @@ namespace CheckerZ_Server.Pages
             _logger = logger;
         }
 
-        public void OnGet()
-        {
 
-        }
     }
 }
