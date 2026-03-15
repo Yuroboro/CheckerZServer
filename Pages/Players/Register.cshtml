@@ -10,55 +10,73 @@
 <h4>Enter players for session</h4>
 <hr />
 
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div class="row">
-                <div class="col-3">
-                    <label asp-for="Players[0].Id" class="control-label" class="form-check-label"> ID</label>
-                </div>
-
-                <div class="col-3">
-                    <label asp-for="Players[0].Name" class="control-label" class="form-check-label"> Name</label>
-                </div>
-
-                <div class="col-3">
-                    <label asp-for="Players[0].PhoneNumber" class="control-label" class="form-check-label"> Phone Number</label>
-                </div>
-                <div class="col-3">
-                    <label asp-for="Players[0].Country" class="control-label" class="form-check-label"> Country</label>
-                </div>
-               
-            </div>
-            
-            <div class="row">
-                <div class="col-3 mb-3">
-                    <input asp-for="Players[0].Id" value="1" min="1" max="1000" step="1" class="form-control" />
-                </div>
-
-                <div class="col-3 mb-3">
-                    <input asp-for="Players[0].Name" class="form-control"/>
-                </div>
-
-                <div class="col-3 mb-3">
-                    <input asp-for="Players[0].PhoneNumber"  class="form-control" />
-                </div>
-
-                <div class="col-3 mb-3">
-                    @Html.DropDownList("Players[0].Country", new SelectList(Model.countries))
-                </div>
-            </div>
-                
 
 
-        </form>
-    </div>
-</div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <form method="post">
+
+        <div class="row mb-4">
+            <div class="col-3">
+                <label for="numPlayersSelect" class="form-label  mb-0">How many players?</label>
+
+                <select asp-for="NumPlayers"
+                        asp-items="@(new SelectList(Model.PlayerAmountRange))"
+                        class="form-select"
+                        id="numPlayersSelect"
+                        onchange="this.form.action='?handler=RowAmount'; this.form.submit();">
+                    <option value="">choose amount</option>
+                </select>
+
+            </div>
+        </div>
+
+
+        <div class="row mb-2">
+            <div class="col-2 ">
+                <label asp-for="Players[0].Id" class="from-label"> ID (from 1 to 1000)</label>
+            </div>
+
+            <div class="col-3 ">
+                <label asp-for="Players[0].Name" class="form-label"> Name</label>
+            </div>
+
+            <div class="col-3 ">
+                <label asp-for="Players[0].PhoneNumber" class="form-label"> Phone Number</label>
+            </div>
+            <div class="col-3 ">
+                <label asp-for="Players[0].Country" class="form-label"> Country</label>
+            </div>
+        </div>
+
+        @for (int i = 0; i < Model.NumPlayers; i++)
+        {
+
+            <div class="row mb-3">
+                <div class="col-2 "">
+                    <input asp-for="Players[i].Id" value="1" min="1" max="1000" step="1" class="form-control" />
+                </div>
+
+                <div class="col-3">
+                    <input asp-for="Players[i].Name" class="form-control" />
+                </div>
+
+                <div class="col-3 ">
+                    <input asp-for="Players[i].PhoneNumber" class="form-control" />
+                </div>
+
+                <div class="col-3 ">
+                    @Html.DropDownList($"Players[{i}].Country", new SelectList(Model.countries))
+                </div>
+            </div>
+        }
+    </form>
 </div>
 
+
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
