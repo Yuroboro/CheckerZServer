@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CheckerZ_Server.Migrations
 {
-    [DbContext(typeof(PlayersDB))]
+    [DbContext(typeof(PlayersContext))]
     partial class PlayersDBModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

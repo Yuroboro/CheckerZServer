@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using CheckerZ_Server;
+using CheckerZ_Server.Models;
 
 namespace CheckerZ_Server.Pages.Players
 {
     public class EditModel : PageModel
     {
-        private readonly PlayersDB _context;
+        private readonly PlayersContext _context;
 
-        public EditModel(PlayersDB context)
+        public EditModel(PlayersContext context)
         {
             _context = context;
         }

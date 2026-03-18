@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CheckerZ_Server.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using CheckerZ_Server;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CheckerZ_Server.Pages.Players
 {
     public class RegisterModel : PageModel
     {
-        private readonly PlayersDB _context;
+        private readonly PlayersContext _context;
 
-        public RegisterModel(PlayersDB context)
+        public RegisterModel(PlayersContext context)
         {
             _context = context;
         }
@@ -28,7 +29,7 @@ namespace CheckerZ_Server.Pages.Players
         // range for number of players chosen
         public List<int> PlayerAmountRange = Enumerable.Range(1, 10).ToList();
 
-        public List<string> countries = ["France","Israel","USA","UK","Japan","China","Morroco","Brazil"];
+        public List<string> countries = ["Israel", "France", "USA","UK","Japan","China","Morroco","Brazil"];
 
         //prints the register page to screen
         public IActionResult OnGet()
@@ -67,18 +68,26 @@ namespace CheckerZ_Server.Pages.Players
         }
 
 
-        ////For more information, see https://aka.ms/RazorPagesCRUD.
-        //public async Task<IActionResult> OnPostAsync()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
+        //For more information, see https://aka.ms/RazorPagesCRUD.
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+            for(int i = 0;i<NumPlayers; i++)
+            {
+                var exists = await _context.Player.AnyAsync(p => p.Id == Players[i].Id);
+                if (exists)
+                {
+                    ModelState.AddModelError($"Players[{i}].Id", $"Sorry,ID already exists");
+                    return Page();
 
-        //    _context.Player.Add(Player);
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToPage("./Index");
-        //}
+                }
+                _context.Player.Add(Players[i]);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToPage("./Index");
+        }
     }
 }

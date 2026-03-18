@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CheckerZ_Server.Migrations
 {
-    [DbContext(typeof(PlayersDB))]
+    [DbContext(typeof(PlayersContext))]
     [Migration("20260317231953_InitialCreate")]
     partial class InitialCreate
     {

@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using CheckerZ_Server;
+using CheckerZ_Server.Models;
 
 namespace CheckerZ_Server.Pages.Players
 {
     public class IndexModel : PageModel
     {
-        private readonly PlayersDB _context;
+        private readonly PlayersContext _context;
 
-        public IndexModel(PlayersDB context)
+        public IndexModel(PlayersContext context)
         {
             _context = context;
         }
