@@ -1,13 +1,18 @@
 ﻿@page
 @model CheckerZ_Server.Pages.Players.RegisterModel
 
+@*Name of the subpage*@
 @{
     ViewData["Title"] = "Register";
 }
 
+@*Headline of the page*@
 <h1>Register</h1>
 
+@*Text*@
 <h4>Enter players for session</h4>
+
+@*Line between text and inserting data*@
 <hr />
 
 
@@ -16,23 +21,25 @@
 <div>
     <form method="post">
 
-        <div class="row mb-4">
-            <div class="col-3">
-                <label for="numPlayersSelect" class="form-label  mb-0">How many players?</label>
+        <div class="row mb-3">
+            @**@
+            <div class="col-2">
+                <label for="numPlayersSelect" class="form-label">How many players?</label>
+            </div>
 
+            <div class="col-1">
                 <select asp-for="NumPlayers"
                         asp-items="@(new SelectList(Model.PlayerAmountRange))"
                         class="form-select"
                         id="numPlayersSelect"
                         onchange="this.form.action='?handler=RowAmount'; this.form.submit();">
-                    <option value="">choose amount</option>
                 </select>
 
             </div>
         </div>
 
 
-        <div class="row mb-2">
+        <div class="row mb-1">
             <div class="col-2 ">
                 <label asp-for="Players[0].Id" class="from-label"> </label>
             </div>
