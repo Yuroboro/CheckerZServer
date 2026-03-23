@@ -4,17 +4,16 @@
     ViewData["Title"] = "CheckerZ - TitleScreen";
 }
 
-@* <div class="text-center">
+<div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div> *@
+</div> 
 
 <div class="text-center mt-5">
     <h1 class="display-4">CheckerZ</h1>
     <p>Select an option:</p>
 
     <div class="mt-4">
-        <a asp-page="/Players/Register" class="btn btn-primary btn-lg m-2">Start Game</a>
+        <a asp-page="./UserLogin" class="btn btn-primary btn-lg m-2">Start Game</a>
 
         <a asp-page="/Players/Index" class="btn btn-secondary btn-lg m-2">Manage Data</a>
     </div>
