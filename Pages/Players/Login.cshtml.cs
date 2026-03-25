@@ -57,20 +57,55 @@ namespace CheckerZ_Server.Pages.Players
             return Page();
         }
 
-        //public async Task<IActionResult> OnPostAsync()
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
-        //    for (int i = 0; i < NumPlayers; i++)
-        //    {
-        //        var exists = await _context.Player.AnyAsync(p => p.Id == Players[i].Id);
+        public async Task<IActionResult> OnPostAsync()
+        {
+            Random rnd = new Random();
+            int gameSession;
+            if (Players == null || Players.Count == 0) return Page();
 
-        //    }
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToPage("/UserLogin");
-        //}
+            for (int i = 0; i < NumPlayers; i++)
+            {
+                ModelState.Remove($"Players[{i}].Country");
+                ModelState.Remove($"Players[{i}].Id");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+
+            for (int i = 0; i < NumPlayers; i++)
+            {
+                var dbPlayer = await _context.Player.FirstOrDefaultAsync(p => p.Name == Players[i].Name &&
+                p.PhoneNumber == Players[i].PhoneNumber);
+                if (dbPlayer == null)
+                {
+                    ModelState.AddModelError($"Players[{i}].Name", "player doesn't exist");
+                    return Page();
+                }
+                Players[i] = dbPlayer;
+            }
+
+            while (true)
+            {
+                gameSession = rnd.Next(10000, 99999); // מספר בן 5 ספרות
+                if (!await _context.Game.AnyAsync(g => g.SessionID == gameSession)) break;
+            }
+
+            foreach (var p in Players)
+            {
+                _context.Game.Add(new Game
+                {
+                    SessionID = gameSession,
+                    PlayerId = p.Id,
+                });
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToPage("/GameCode", new { Code = gameSession });
+        }
+
 
     }
 }

@@ -1,6 +1,5 @@
 ﻿
-    .mystyle
-    {
-    color:red;
-    font-style: italic;
-    }
+.mystyle {
+    color: black;
+    font-weight: bold;
+}

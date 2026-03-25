@@ -9,8 +9,9 @@ public class PlayersContext : DbContext
     {
         public PlayersContext (DbContextOptions<PlayersContext> options)
             : base(options)
-        {
-        }
-
-        public DbSet<Player> Player { get; set; } = default!;
+    {
     }
+
+    public DbSet<Player> Player { get; set; } = default!;
+    public DbSet<Game> Game { get; set; } 
+}
