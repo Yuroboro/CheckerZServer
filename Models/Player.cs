@@ -14,6 +14,8 @@ public partial class Player
     [Range(1, 1000, ErrorMessage = "ID must be a number between 1 and 1000.")]
     public int Id { get; set; }
 
+    public int? SessionID { get; set; } = null;
+
     [Display(Name = "Name")]
     [Required(ErrorMessage = "Name is required.")]
     [MinLength(2, ErrorMessage = "Name must contain at least 2 letters.")]

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CheckerZ_Server.Migrations
 {
     [DbContext(typeof(PlayersContext))]
-    [Migration("20260323153134_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260327115617_ServerUpdate")]
+    partial class ServerUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,7 @@ namespace CheckerZ_Server.Migrations
                     b.Property<int?>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("GameDate")
+                    b.Property<DateTime?>("GameDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PlayerId")
@@ -54,10 +54,7 @@ namespace CheckerZ_Server.Migrations
             modelBuilder.Entity("CheckerZ_Server.Models.Player", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Country")
                         .IsRequired()
@@ -70,6 +67,9 @@ namespace CheckerZ_Server.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SessionID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

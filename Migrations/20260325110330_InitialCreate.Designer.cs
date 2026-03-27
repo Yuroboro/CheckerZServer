@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CheckerZ_Server.Migrations
 {
     [DbContext(typeof(PlayersContext))]
-    [Migration("20260325104155_gameDatabaseUpdate")]
-    partial class gameDatabaseUpdate
+    [Migration("20260325110330_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

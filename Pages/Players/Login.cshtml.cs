@@ -87,19 +87,12 @@ namespace CheckerZ_Server.Pages.Players
                 Players[i] = dbPlayer;
             }
 
-            while (true)
-            {
-                gameSession = rnd.Next(10000, 99999); // מספר בן 5 ספרות
-                if (!await _context.Game.AnyAsync(g => g.SessionID == gameSession)) break;
-            }
+            gameSession = rnd.Next(10000, 99999); // מספר בן 5 ספרות
 
             foreach (var p in Players)
             {
-                _context.Game.Add(new Game
-                {
-                    SessionID = gameSession,
-                    PlayerId = p.Id,
-                });
+                p.SessionID = gameSession;
+                _context.Player.Update(p);
             }
 
             await _context.SaveChangesAsync();

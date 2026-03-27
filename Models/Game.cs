@@ -7,8 +7,6 @@ public partial class Game
 {
     public int Id { get; set; }
 
-    public int SessionID {  get; set; } 
-
     public int PlayerId { get; set; }
 
     public DateTime? GameDate { get; set; } = default(DateTime?);

@@ -41,9 +41,6 @@ namespace CheckerZ_Server.Migrations
                     b.Property<string>("Result")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SessionID")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PlayerId");
@@ -67,6 +64,9 @@ namespace CheckerZ_Server.Migrations
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SessionID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
