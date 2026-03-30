@@ -35,7 +35,7 @@ namespace CheckerZ_Server.Migrations
                     PlayerId = table.Column<int>(type: "int", nullable: false),
                     GameDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Duration = table.Column<int>(type: "int", nullable: true),
-                    Result = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    GameOutcome = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

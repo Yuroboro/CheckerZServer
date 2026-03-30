@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CheckerZ_Server.Migrations
 {
-    [DbContext(typeof(PlayersContext))]
+    [DbContext(typeof(DataContext))]
     partial class PlayersContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -38,7 +38,7 @@ namespace CheckerZ_Server.Migrations
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Result")
+                    b.Property<string>("GameOutcome")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

@@ -11,9 +11,9 @@ namespace CheckerZ_Server.Pages.Games
 {
     public class DeleteModel : PageModel
     {
-        private readonly PlayersContext _context;
+        private readonly DataContext _context;
 
-        public DeleteModel(PlayersContext context)
+        public DeleteModel(DataContext context)
         {
             _context = context;
         }

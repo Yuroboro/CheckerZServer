@@ -11,9 +11,9 @@ namespace CheckerZ_Server.Pages.Players
 {
     public class DetailsModel : PageModel
     {
-        private readonly PlayersContext _context;
+        private readonly DataContext _context;
 
-        public DetailsModel(PlayersContext context)
+        public DetailsModel(DataContext context)
         {
             _context = context;
         }

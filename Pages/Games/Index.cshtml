@@ -6,30 +6,31 @@
 }
 
 <h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<div class="row mb-4">
+        <div class="col-3">
+        <a asp-page="/Players/Index" class="btn btn-primary btn">Show Players</a>
+        </div>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Game[0].GameDate)
+                @Html.DisplayNameFor(model => model.Games[0].GameDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Game[0].Duration)
+                @Html.DisplayNameFor(model => model.Games[0].Duration)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Game[0].Result)
+                @Html.DisplayNameFor(model => model.Games[0].GameOutcome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Game[0].Player)
+                @Html.DisplayNameFor(model => model.Games[0].Player)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Game) {
+@foreach (var item in Model.Games) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.GameDate)
@@ -38,13 +39,12 @@
                 @Html.DisplayFor(modelItem => item.Duration)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Result)
+                @Html.DisplayFor(modelItem => item.GameOutcome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Player.Country)
+                @Html.DisplayFor(modelItem => item.Player.Name)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>

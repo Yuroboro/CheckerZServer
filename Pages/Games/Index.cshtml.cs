@@ -11,19 +11,24 @@ namespace CheckerZ_Server.Pages.Games
 {
     public class IndexModel : PageModel
     {
-        private readonly PlayersContext _context;
+        private readonly DataContext _context;
 
-        public IndexModel(PlayersContext context)
+        public IndexModel(DataContext context)
         {
             _context = context;
-        }
+        } 
 
-        public IList<Game> Game { get;set; } = default!;
-
+        public IList<Game> Games { get; set; } = default!;
         public async Task OnGetAsync()
         {
-            Game = await _context.Game
-                .Include(g => g.Player).ToListAsync();
+            Games = await _context.Game
+                .Include(g => g.Player).Where(g=>g.GameDate!=null).ToListAsync();
+        }
+
+        //querie 24
+        public async Task OnPostShowGameData()
+        {
+            var games = await _context.Game.ToListAsync();
         }
     }
 }

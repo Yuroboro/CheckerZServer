@@ -11,18 +11,25 @@ namespace CheckerZ_Server.Pages.Players
 {
     public class IndexModel : PageModel
     {
-        private readonly PlayersContext _context;
+        private readonly DataContext _context;
 
-        public IndexModel(PlayersContext context)
+        public IndexModel(DataContext context)
         {
             _context = context;
         }
 
-        public IList<Player> Player { get;set; } = default!;
+        public IList<Player> Players { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Player = await _context.Player.ToListAsync();
+            Players = await _context.Player.ToListAsync();
+        }
+
+        //querie 22
+        public async Task OnPostShowPlayerData()
+        {
+            var players = await _context.Player.Where(p=>p.Games.Any()).ToListAsync();
+            Players = players.OrderBy(p=>p.Name).ToList();
         }
     }
 }

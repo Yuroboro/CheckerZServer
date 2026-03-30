@@ -7,8 +7,8 @@ namespace CheckerZ_Server.Pages.Players
 {
     public class LoginModel : PageModel
     {
-        private readonly PlayersContext _context;
-        public LoginModel(PlayersContext context)
+        private readonly DataContext _context;
+        public LoginModel(DataContext context)
         {
             _context = context;
         }

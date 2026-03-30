@@ -4,8 +4,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<PlayersContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PlayersContext") ?? throw new InvalidOperationException("Connection string 'PlayersDB' not found.")));
+builder.Services.AddControllers();
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DataContext") ?? throw new InvalidOperationException("Connection string 'PlayersDB' not found.")));
 
 var app = builder.Build();
 
@@ -25,5 +26,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllers();
 
 app.Run();

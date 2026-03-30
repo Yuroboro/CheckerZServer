@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace CheckerZ_Server.Models;
 
@@ -13,7 +14,8 @@ public partial class Game
 
     public int? Duration { get; set; } = null;
 
-    public string? Result { get; set; } = null;
+    public string? GameOutcome { get; set; } = null;
 
-    public virtual Player Player { get; set; } = null!;
+    [JsonIgnore]
+    public virtual Player? Player { get; set; }
 }

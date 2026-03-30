@@ -11,9 +11,9 @@ namespace CheckerZ_Server.Pages.Games
 {
     public class DetailsModel : PageModel
     {
-        private readonly PlayersContext _context;
+        private readonly DataContext _context;
 
-        public DetailsModel(PlayersContext context)
+        public DetailsModel(DataContext context)
         {
             _context = context;
         }
@@ -27,7 +27,7 @@ namespace CheckerZ_Server.Pages.Games
                 return NotFound();
             }
 
-            var game = await _context.Game.FirstOrDefaultAsync(m => m.Id == id);
+            var game = await _context.Game.Include(m => m.Player).FirstOrDefaultAsync(m => m.Id == id);
             if (game == null)
             {
                 return NotFound();

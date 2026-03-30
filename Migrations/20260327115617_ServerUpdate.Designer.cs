@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CheckerZ_Server.Migrations
 {
-    [DbContext(typeof(PlayersContext))]
+    [DbContext(typeof(DataContext))]
     [Migration("20260327115617_ServerUpdate")]
     partial class ServerUpdate
     {

@@ -12,9 +12,9 @@ namespace CheckerZ_Server.Pages.Players
 {
     public class EditModel : PageModel
     {
-        private readonly PlayersContext _context;
+        private readonly DataContext _context;
 
-        public EditModel(PlayersContext context)
+        public EditModel(DataContext context)
         {
             _context = context;
         }

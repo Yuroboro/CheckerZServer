@@ -10,12 +10,14 @@ namespace CheckerZ_Server.API
     [ApiController]
     public class ServerController : ControllerBase
     {
-        private readonly PlayersContext _context;
-        public ServerController(PlayersContext context)
+        private readonly DataContext _context;
+        public ServerController(DataContext context)
         {
             _context = context;
         }
-        [HttpGet("LoginSession/{SessionCode}")]
+
+        // Send players list to client
+        [HttpGet("LoginSession/{code}")]
         public async Task<ActionResult<IEnumerable<Player>>> GetPlayersBySession(int code)
         {
 
@@ -40,12 +42,14 @@ namespace CheckerZ_Server.API
             return Ok(sessionPlayers);
         }
 
+        //Recieve games from client and storing it in server
         [HttpPost("SaveGame")]
         public async Task<ActionResult<Game>> PostGame(Game game)
         {
             _context.Game.Add(game);
             await _context.SaveChangesAsync();
-            return Ok();
+            await _context.Entry(game).Reference(g => g.Player).LoadAsync();
+            return Ok(game);
         }
     }
 }
