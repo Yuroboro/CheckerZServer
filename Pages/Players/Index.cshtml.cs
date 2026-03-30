@@ -31,5 +31,11 @@ namespace CheckerZ_Server.Pages.Players
             var players = await _context.Player.Where(p=>p.Games.Any()).ToListAsync();
             Players = players.OrderBy(p=>p.Name).ToList();
         }
+
+        public async Task OnPostShowFirstPlayerByCountry()
+        {
+            //var players = await _context.Player.Where(p => p.Games.Any()).GroupBy(p => p.Country).Select(group => group.OrderBy()).ToListAsync();
+            //Players = players.GroupBy(p => p.Country).ToList();
+        }
     }
 }

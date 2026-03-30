@@ -9,12 +9,16 @@
 <div class="row mt-4">
     @*Filters the data on post*@
     <form method="post">
-        <div class="col-3">
-            <button asp-page="" asp-page-handler = "ShowPlayerData" type="submit">Show Players who played</button>
+        <div class="mb-3">
+            <button asp-page="" asp-page-handler="ShowPlayerData" class="btn btn-primary btn" type="submit">Show Players who played</button>
+        </div>
+
+        <div class="mb-3">
+            <button asp-page="" asp-page-handler="ShowFirstPlayerByCountry" class="btn btn-primary btn" type="submit">Show 1st Player By Country</button>
         </div>
     </form>
     @*Move to games page*@
-    <div class="col-3">
+    <div class="row-3">
         <a asp-page="/Games/Index" class="btn btn-primary btn">Show Games</a>
     </div>
 </div>
