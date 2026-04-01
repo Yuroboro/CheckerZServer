@@ -6,21 +6,16 @@
 }
 
 <h1>Index</h1>
-<div class="row mt-4">
+<div class="d-flex align-items-center gap-2 mt-4">
     @*Filters the data on post*@
-    <form method="post">
-        <div class="mb-3">
+    <form method="post" class="d-inline-flex gap-2 mb-0">
             <button asp-page="" asp-page-handler="ShowPlayerData" class="btn btn-primary btn" type="submit">Show Players who played</button>
-        </div>
 
-        <div class="mb-3">
             <button asp-page="" asp-page-handler="ShowFirstPlayerByCountry" class="btn btn-primary btn" type="submit">Show 1st Player By Country</button>
-        </div>
+   
     </form>
     @*Move to games page*@
-    <div class="row-3">
         <a asp-page="/Games/Index" class="btn btn-primary btn">Show Games</a>
-    </div>
 </div>
 
 <table class="table">

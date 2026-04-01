@@ -28,14 +28,19 @@ namespace CheckerZ_Server.Pages.Players
         //querie 22
         public async Task OnPostShowPlayerData()
         {
-            var players = await _context.Player.Where(p=>p.Games.Any()).ToListAsync();
-            Players = players.OrderBy(p=>p.Name).ToList();
+            var players = await _context.Player.Where(p => p.Games.Any()).ToListAsync();
+            Players = players.OrderBy(p => p.Name).ToList();
         }
 
         public async Task OnPostShowFirstPlayerByCountry()
         {
-            //var players = await _context.Player.Where(p => p.Games.Any()).GroupBy(p => p.Country).Select(group => group.OrderBy()).ToListAsync();
-            //Players = players.GroupBy(p => p.Country).ToList();
+
+            var Firstplayers = await _context.Player.Where(p => p.Games.Any()).
+                GroupBy(p => p.Country)
+                .Select(group => group.OrderBy(p =>
+                p.Games.Min(g => g.GameDate)).First()).ToListAsync();
+
+            Players = Firstplayers;
         }
     }
 }
