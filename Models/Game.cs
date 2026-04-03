@@ -12,13 +12,13 @@ public partial class Game
     public int PlayerId { get; set; }
 
     [Display(Name = "Date")]
-    public DateTime? GameDate { get; set; } = default(DateTime?);
+    public DateTime GameDate { get; set; } = default(DateTime);
 
     [Display(Name = "Duration")]
-    public int? Duration { get; set; } = null;
+    public int Duration { get; set; }
 
     [Display(Name = "Result")]
-    public string? GameOutcome { get; set; } = null;
+    public string GameOutcome { get; set; } = "";
 
     [Display(Name = "Player")]
     [JsonIgnore]

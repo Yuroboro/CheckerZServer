@@ -33,9 +33,9 @@ namespace CheckerZ_Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SessionID = table.Column<int>(type: "int", nullable: false),
                     PlayerId = table.Column<int>(type: "int", nullable: false),
-                    GameDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Duration = table.Column<int>(type: "int", nullable: true),
-                    GameOutcome = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    GameDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    GameOutcome = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

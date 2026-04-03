@@ -25,13 +25,14 @@ namespace CheckerZ_Server.Pages.Players
             Players = await _context.Player.ToListAsync();
         }
 
-        //querie 22
+        //query 22
         public async Task OnPostShowPlayerData()
         {
             var players = await _context.Player.Where(p => p.Games.Any()).ToListAsync();
             Players = players.OrderBy(p => p.Name).ToList();
         }
 
+        //query 25
         public async Task OnPostShowFirstPlayerByCountry()
         {
 
@@ -41,6 +42,13 @@ namespace CheckerZ_Server.Pages.Players
                 p.Games.Min(g => g.GameDate)).First()).ToListAsync();
 
             Players = Firstplayers;
+        }
+        
+        //query 29
+        public async Task OnPostSortByCountries()
+        {
+            var CountryPlayers = await _context.Player.OrderBy(p => p.Country).ToListAsync();
+            Players = CountryPlayers;
         }
     }
 }

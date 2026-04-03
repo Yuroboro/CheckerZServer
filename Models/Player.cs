@@ -19,16 +19,17 @@ public partial class Player
     [Display(Name = "Name")]
     [Required(ErrorMessage = "Name is required.")]
     [MinLength(2, ErrorMessage = "Name must contain at least 2 letters.")]
-    public string? Name { get; set; } = default;
+    public string Name { get; set; } = default;
 
     [Display(Name = "Phone Number")]
     [Required(ErrorMessage = "Phone number is required.")]
     [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be exactly 10 digits.")]
-    public string? PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; }
 
     [Display(Name = "Country")]
     [Required(ErrorMessage = "Please select a country.")]
-    public string? Country { get; set; }
+    public string Country { get; set; }
 
+    [Display(Name = "Games")]
     public virtual ICollection<Game> Games { get; set; } = new List<Game>();
 }

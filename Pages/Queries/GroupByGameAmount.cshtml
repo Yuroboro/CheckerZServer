@@ -1,0 +1,47 @@
+﻿@page
+@model CheckerZ_Server.Pages.Queries.GroupByGameAmountModel
+@{
+	ViewData["Title"] = "Group By Game Amount Model";
+}
+
+<h1>Group By Game Amount Model</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.gameAmountGroups[0].Games.Count)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.gameAmountGroups[0].Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.gameAmountGroups[0].PhoneNumber)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.gameAmountGroups[0].Country)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.gameAmountGroups)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Games.Count)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.PhoneNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Country)
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+

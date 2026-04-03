@@ -23,11 +23,11 @@
 
         <div class="row mb-3">
             @**@
-            <div class="col-2">
+            <div class="col-3">
                 <label for="numPlayersSelect" class="form-label">How many players?</label>
             </div>
 
-            <div class="col-1">
+            <div class="col-2">
                 <select asp-for="NumPlayers"
                         asp-items="@(new SelectList(Model.PlayerAmountRange))"
                         class="form-select"
