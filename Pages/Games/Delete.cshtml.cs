@@ -28,7 +28,7 @@ namespace CheckerZ_Server.Pages.Games
                 return NotFound();
             }
 
-            var game = await _context.Game.FirstOrDefaultAsync(m => m.Id == id);
+            var game = await _context.Game.Include(m => m.Player).FirstOrDefaultAsync(m => m.Id == id);
 
             if (game == null)
             {

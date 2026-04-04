@@ -30,7 +30,7 @@ namespace CheckerZ_Server.API
                 return NotFound("Session Not Found");
             }
 
-     
+
             foreach (var p in sessionPlayers)
             {
                 p.SessionID = 0;
@@ -50,6 +50,18 @@ namespace CheckerZ_Server.API
             await _context.SaveChangesAsync();
             await _context.Entry(game).Reference(g => g.Player).LoadAsync();
             return Ok(game);
+        }
+
+        [HttpGet("SyncGames")]
+        public async Task<ActionResult> GetGames()
+        {
+            var games = await _context.Game.Select(g => new
+            {
+                PlayerID = g.PlayerId,
+                GameDate = g.GameDate,
+                PlayerName = g.Player!.Name
+            }).ToListAsync();
+            return Ok(games);
         }
     }
 }
