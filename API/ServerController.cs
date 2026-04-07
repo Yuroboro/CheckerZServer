@@ -1,4 +1,5 @@
 ﻿using CheckerZ_Server.Models;
+using CheckerZ_Server.Objects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -62,6 +63,15 @@ namespace CheckerZ_Server.API
                 PlayerName = g.Player!.Name
             }).ToListAsync();
             return Ok(games);
+        }
+
+        [HttpPost("ComputerMove")]
+        public ActionResult PostComputerMove([FromBody] GameStateRequest gameStateRequest)
+        {
+            List<BoardLocation> playerLocations = gameStateRequest.PlayerLocations;
+            List<BoardLocation> computerLocations = gameStateRequest.ComputerLocations;
+            MoveCommand moveCommand = MoveSelector.SelectMove(playerLocations, computerLocations);
+            return Ok(moveCommand);
         }
     }
 }
