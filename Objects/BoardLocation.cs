@@ -1,5 +1,6 @@
 ﻿namespace CheckerZ_Server.Objects
 {
+    //Object that represnts a location of a piece on the board sent from client side
     public class BoardLocation
     {
         public int Row { get; set; }

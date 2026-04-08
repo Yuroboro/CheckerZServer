@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol;
 
+// An object to handle client server communication for the server
 namespace CheckerZ_Server.API
 {
     [Route("api/[controller]")]
@@ -53,6 +54,8 @@ namespace CheckerZ_Server.API
             return Ok(game);
         }
 
+        //Sending the game list that contains player name id and game date.
+        //Used to sync changes in the games database in both client and server
         [HttpGet("SyncGames")]
         public async Task<ActionResult> GetGames()
         {
@@ -64,7 +67,7 @@ namespace CheckerZ_Server.API
             }).ToListAsync();
             return Ok(games);
         }
-
+        // Gets current state of the board and sends choosen move by the server
         [HttpPost("ComputerMove")]
         public ActionResult PostComputerMove([FromBody] GameStateRequest gameStateRequest)
         {

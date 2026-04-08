@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CheckerZ_Server.Models;
 
+//An object represnting a player stored in server database
 public partial class Player
 {
     [Key]

@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace CheckerZ_Server.Models;
 
+//An object represnting a game stored in server database
 public partial class Game
 {
     public int Id { get; set; }

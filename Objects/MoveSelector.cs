@@ -4,6 +4,7 @@ using Microsoft.VisualBasic;
 
 namespace CheckerZ_Server.Objects
 {
+    // Object to allow the server to select a desired computer move to be sent to the client.
     public static class MoveSelector
     {
         private const int ROWS = 8;
@@ -22,7 +23,7 @@ namespace CheckerZ_Server.Objects
                 list[n] = value;
             }
         }
-
+        // Function to select a possible move 
         public static MoveCommand SelectMove(List<BoardLocation> playerLocations, List<BoardLocation> computerLocations)
         {
             if (computerLocations.Count > 1)
@@ -54,6 +55,7 @@ namespace CheckerZ_Server.Objects
             }
             return null;
         }
+        //Logic for capture right
         public static bool TryCaptureDownRight(out GameAction action, out int targetRow, out int targetCol, int pieceIndex, List<BoardLocation> playerLocations, List<BoardLocation> computerLocations)
         {
             targetRow = 0;
@@ -97,7 +99,7 @@ namespace CheckerZ_Server.Objects
             }
             return false;
         }
-
+        //Logic for capture left
         public static bool TryCaptureDownLeft(out GameAction action, out int targetRow, out int targetCol, int pieceIndex, List<BoardLocation> playerLocations, List<BoardLocation> computerLocations)
         {
             targetRow = 0;
@@ -141,7 +143,7 @@ namespace CheckerZ_Server.Objects
             }
             return false;
         }
-
+        //Logic for move down right
         public static bool TryMoveDownRight(out GameAction action, out int targetRow, out int targetCol, int pieceIndex, List<BoardLocation> playerLocations, List<BoardLocation> computerLocations)
         {
             targetRow = 0;
@@ -178,6 +180,8 @@ namespace CheckerZ_Server.Objects
             }
             return false;
         }
+
+        //Logic for move down left
         public static bool TryMoveDownLeft(out GameAction action, out int targetRow, out int targetCol, int pieceIndex, List<BoardLocation> playerLocations, List<BoardLocation> computerLocations)
         {
             targetRow = 0;
@@ -215,6 +219,7 @@ namespace CheckerZ_Server.Objects
             return false;
 
         }
+        //Logic for move up right (reverse right for the computer)
         public static bool TryMoveUpRight(out GameAction action, out int targetRow, out int targetCol, int pieceIndex, List<BoardLocation> playerLocations, List<BoardLocation> computerLocations)
         {
             targetRow = 0;
@@ -255,6 +260,8 @@ namespace CheckerZ_Server.Objects
             return false;
 
         }
+
+        //Logic for move up left (reverse left for the computer)
         public static bool TryMoveUpLeft(out GameAction action, out int targetRow, out int targetCol, int pieceIndex, List<BoardLocation> playerLocations, List<BoardLocation> computerLocations)
         {
             targetRow = 0;
